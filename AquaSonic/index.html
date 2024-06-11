@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AquaSonic</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="welcome"><img src="./favicon.ico" alt="coral"><h1>AquaSonic</h1></div>
+    <section id="globalControls">
+      <div id="octaveControls">
+        <button id="octaveDown">-</button>
+        <span>Octave</span>
+        <button id="octaveUp">+</button>
+      </div>
+      <label for="volume">Volume<input type="range" name="volume" id="volume" min="0" max="1" step="0.01" value="0.8"></label>
+    </section>
+    <div id="instrument">
+      <section id="chords"></section>
+      <section id="control">
+        <div id="touchPad">
+          <p id="xLabel">&larr; Pitch Bend &rarr;</p>
+          <p id="yLabel">&larr; Low-Pass Frequency &rarr;</p>
+          <div id="point"></div>
+          <div id="touchLock">&#128274;</div>
+        </div>
+        <div id="options">
+          <div id="waveOptBox">
+            <label for="waveType1" class="waveOption">
+              <div class="waveBox">
+                <div class="leftCircle"></div>
+                <div class="rightCircle"></div>
+              </div>
+              <input
+                type="radio"
+                name="waveType"
+                class="waveOpt"
+                id="waveType1"
+                value="sine"
+                checked="true"
+              />
+            </label>
+            <label for="waveType2" class="waveOption">
+              <input
+                type="radio"
+                name="waveType"
+                class="waveOpt"
+                id="waveType2"
+                value="square"
+              />
+              <div class="waveBox">
+                <div class="squareWaveLeft"></div>
+                <div class="squareWaveRight"></div>
+              </div>
+            </label>
+            <label for="waveType3" class="waveOption">
+              <div class="waveBox">
+                <div class="triWaveLeft"></div>
+                <div class="triWaveRight"></div>
+              </div>
+              <input
+                type="radio"
+                name="waveType"
+                class="waveOpt"
+                id="waveType3"
+                value="triangle"
+              />
+            </label>
+            <label for="waveType4" class="waveOption">
+              <div class="waveBox">
+                <div class="sawWave"></div>
+              </div>
+              <input
+                type="radio"
+                name="waveType"
+                class="waveOpt"
+                id="waveType4"
+                value="sawtooth"
+              />
+            </label>
+          </div>
+          <div id="envelopeBox">
+            <div class="knobBox">
+              <h3>A</h3>
+              <div class="knob" data-rotation="-68.245849609375" style="transform: rotate(-68.2459deg);">
+                <div class="knobMark"></div>
+              </div>
+              <div class="knobDisplay"></div>
+            </div>
+            <div class="knobBox">
+              <h3>D</h3>
+              <div class="knob" data-rotation="-107.245849609375" style="transform: rotate(-107.2458deg);">
+                <div class="knobMark"></div>
+              </div>
+              <div class="knobDisplay"></div>
+            </div>
+            <div class="knobBox">
+              <h3>S</h3>
+              <div class="knob" data-rotation="-107.245849609375" style="transform: rotate(-107.2458deg);">
+                <div class="knobMark"></div>
+              </div>
+              <div class="knobDisplay"></div>
+            </div>
+            <div class="knobBox">
+              <h3>R</h3>
+              <div class="knob" data-rotation="-68.245849609375" style="transform: rotate(-68.2459deg);">
+                <div class="knobMark"></div>
+              </div>
+              <div class="knobDisplay"></div>
+            </div>
+          </div>
+          <div id="keyBox">
+            <label for="enharmonic">
+              <input type="checkbox" id="enharmonic" checked />
+              <div id="flatSlider"></div>
+            </label>
+            <div id="keySigContainer">
+              <select name="key" id="keyChoice">
+                <option value="">All</option>
+                <option value="0">C</option>
+                <option value="4">C#</option>
+                <option value="8">D</option>
+                <option value="12">D#</option>
+                <option value="16">E</option>
+                <option value="20">F</option>
+                <option value="24">F#</option>
+                <option value="28">G</option>
+                <option value="32">G#</option>
+                <option value="36">A</option>
+                <option value="40">A#</option>
+                <option value="44">B</option>
+              </select>
+              <select name="tonality" id="tonality">
+                <option value="maj">Major</option>
+                <option value="min">Minor</option>
+              </select>
+            </div>
+          </div>
+          <div id="patternBox">
+            <label for="patternToggle">
+              <input type="checkbox" id="patternToggle" />
+              <span class="toggleMark"></span>
+            </label>
+            <div id="tempoBox">
+              <div id="tempoBig">100</div>
+              <span id="lessTempo">&larr;</span>
+              <span id="tempo">100</span>
+              <span id="moreTempo">&rarr;</span>
+            </div>
+            <span id="pulseLight"></span>
+            <label for="beatCheck1">
+              <input type="checkbox" id="beatCheck1" class="beatCheck" disabled />
+              <span class="beatMark"></span>
+            </label>
+            <label for="beatCheck2">
+              <input type="checkbox" id="beatCheck2" class="beatCheck" disabled />
+              <span class="beatMark"></span>
+            </label>
+            <label for="beatCheck3">
+              <input type="checkbox" id="beatCheck3" class="beatCheck" disabled />
+              <span class="beatMark"></span>
+            </label>
+            <label for="beatCheck4">
+              <input type="checkbox" id="beatCheck4" class="beatCheck" disabled />
+              <span class="beatMark"></span>
+            </label>
+            <label for="beatCheck5">
+              <input type="checkbox" id="beatCheck5" class="beatCheck" disabled />
+              <span class="beatMark"></span>
+            </label>
+            <label for="beatCheck6">
+              <input type="checkbox" id="beatCheck6" class="beatCheck" disabled />
+              <span class="beatMark"></span>
+            </label>
+            <label for="beatCheck7">
+              <input type="checkbox" id="beatCheck7" class="beatCheck" disabled />
+              <span class="beatMark"></span>
+            </label>
+            <label for="beatCheck8">
+              <input type="checkbox" id="beatCheck8" class="beatCheck" disabled />
+              <span class="beatMark"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

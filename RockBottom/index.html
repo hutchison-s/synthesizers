@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover" />
+    <title>Rock Bottom</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/6a8f656999.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="welcome">
+      <img src="./favicon.ico" alt="icon">
+      <h1>RockBottom</h1>
+    </div>
+      <div id="stoneTypeContainer">
+        <label for="rock"><input type="radio" name="stoneType" id="rock" class="stoneOpt" data-bg="./stone.png" data-btn-bg="./pebble.png" hidden></label>
+        <label for="marble"><input type="radio" name="stoneType" id="marble" class="stoneOpt" data-bg="./marble.png" data-btn-bg="./marblepebble.png" hidden></label>
+        <label for="sand"><input type="radio" name="stoneType" id="sand" class="stoneOpt" data-bg="./sand.jpg" data-btn-bg="./sandpebble.jpg" hidden></label>
+      </div>
+      <div class="meterBox prefader">
+        <div id="preFader"></div>
+      </div>
+      <div class="meterBox postfader">
+        <div id="postFader"></div>
+      </div>
+      <label for="volume"><span>Volume</span><input type="range" name="volume" id="volume" min="0" max="1" step="0.01" value="0.7"></label>
+      <div id="count"></div>
+        <div id="inputs">
+            <div id="modulators">
+              <div class="modulator" id="carrier">
+                <div id="carrierToggle" class="hideToggle">Carrier</div>
+                <div id="hiddenCarrier" class="hiddenMod">
+                  <div class="waveTypeBox">
+                    <button class="left"><i class="fa-solid fa-circle-chevron-left"></i></button>
+                    <span id="carrierType" class="waveType">sine</span>
+                    <button class="right"><i class="fa-solid fa-circle-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
+                <div class="modulator" id="mod1">
+                  <div id="mod1Toggle" class="hideToggle">Operator 1</div>
+                  <div id="hiddenMod1" class="hiddenMod">
+                    <div class="waveTypeBox">
+                      <button class="left"><i class="fa-solid fa-circle-chevron-left"></i></button>
+                      <span id="mod1Type" class="waveType">sine</span>
+                      <button class="right"><i class="fa-solid fa-circle-chevron-right"></i></button>
+                    </div>
+                    <label for="mod1gain">Mix<input type="range" name="mod1gain" id="mod1gain" min="0" max="1" step="0.01" value="0" /></label>
+                    <label for="mod1freq">Freq<input type="range" name="mod1freq" id="mod1freq" min="1" max="8" step="1" value="1" /></label>
+                    <label for="mod1attack">Attack<input type="range" name="mod1attack" id="mod1attack" min="0.01" max="1" step="0.01" value="0.05" /></label>
+                    <label for="mod1decay">Decay<input type="range" name="mod1decay" id="mod1decay" min="0.01" max="1" step="0.01" value="0.1" /></label>
+                    <label for="mod1sustain">Sustain<input type="range" name="mod1sustain" id="mod1sustain" min="0" max="1" step="0.01" value="0.5" /></label>
+                    <label for="mod1release">Release<input type="range" name="mod1release" id="mod1release" min="0.01" max="2" step="0.01" value="0.2" /></label>
+                  </div>
+                </div>
+                <div class="modulator" id="mod2">
+                  <div id="mod2Toggle" class="hideToggle">Operator 2</div>
+                  <div id="hiddenMod2" class="hiddenMod">
+                    <div class="waveTypeBox">
+                      <button class="left"><i class="fa-solid fa-circle-chevron-left"></i></button>
+                      <span id="mod2Type" class="waveType">sine</span>
+                      <button class="right"><i class="fa-solid fa-circle-chevron-right"></i></button>
+                    </div>
+                    <div id="modConnectorBox">
+                      <p><small>Connect to</small></p>
+                      <label for="carrierConnect">Carrier<input type="radio" name="mod2Connector" id="carrierConnect" value="mod" hidden></label>
+                      <label for="modConnect">Operator 1<input type="radio" name="mod2Connector" id="modConnect" value="carrier" checked hidden></label>
+                    </div>
+                    <label for="mod2gain">Mix<input type="range" name="mod2gain" id="mod2gain" min="0" max="1" step="0.01" value="0" /></label>
+                    <label for="mod2freq">Freq<input type="range" name="mod2freq" id="mod2freq" min="1" max="8" step="1" value="1" /></label>
+                    <label for="mod2attack">Attack<input type="range" name="mod2attack" id="mod2attack" min="0.01" max="1" step="0.01" value="0.05" /></label>
+                    <label for="mod2decay">Decay<input type="range" name="mod2decay" id="mod2decay" min="0.01" max="1" step="0.01" value="0.1" /></label>
+                    <label for="mod2sustain">Sustain<input type="range" name="mod2sustain" id="mod2sustain" min="0" max="1" step="0.01" value="0.5" /></label>
+                    <label for="mod2release">Release<input type="range" name="mod2release" id="mod2release" min="0.01" max="2" step="0.01" value="0.2" /></label>
+                  </div>
+                </div>
+            </div>
+            <div id="generalSettings">
+              <label for="voices" class="reese">Voices<input type="range" name="voices" id="voices" min="1" max="16" step="1" value="8" /></label>
+              <label for="detune" class="reese">Detune<input type="range" name="detune" id="detune" min="0" max="50" step="1" value="0" /></label>
+              <label for="snap" class="808">Snap<input type="range" name="snap" id="snap" min="0" max="1" step="0.01" value="0.5" /></label>
+              <label for="distortion" class="808">Distort<input type="range" name="distortion" id="distortion" min="0" max="1" step="0.01" value="0" /></label>
+              <label for="wobble" class="FM"><span id="wobbleToggle">Wobble</span><input type="range" name="wobble" id="wobble" min="0" max="40" step="0.1" value="0" /></label>
+              <label for="lowpass" class="reese 808 FM">LowPass<input type="range" name="lowpass" id="lowpass" min="100" max="20000" step="1" value="4000" /></label>
+            </div>
+        <div id="envelopeContainer">
+          <div id="envelopeToggle" class="hideToggle"><i class="fa-regular fa-envelope"></i></div>
+          <div id="hiddenEnvelope">
+            <label for="attack">Attack<input type="range" name="attack" id="attack" min="0.01" max="1" step="0.01" value="0.05" /></label>
+            <label for="decay">Decay<input type="range" name="decay" id="decay" min="0.01" max="1" step="0.01" value="0.1" /></label>
+            <label for="sustain">Sustain<input type="range" name="sustain" id="sustain" min="0" max="1" step="0.01" value="0.5" /></label>
+            <label for="release">Release<input type="range" name="release" id="release" min="0.01" max="2" step="0.01" value="0.2" /></label>
+          </div>
+        </div>
+      </div>
+      <div class="buttonContainer">
+        <div class="disc"><button class="go"></button></div>
+        <div class="disc"><button class="go half chromatic"></button></div>
+        <div class="disc"><button class="go"></button></div>
+        <div class="disc"><button class="go half chromatic"></button></div>
+        <div class="disc"><button class="go"></button></div>
+        <div class="disc"></div>
+        <div class="disc"><button class="go"></button></div>
+        <div class="disc"><button class="go half chromatic"></button></div>
+        <div class="disc"><button class="go"></button></div>
+        <div class="disc"><button class="go half chromatic"></button></div>
+        <div class="disc"><button class="go"></button></div>
+        <div class="disc"><button class="go half chromatic"></button></div>
+        <div class="disc"><button class="go"></button></div>
+        <div class="disc"></div>
+        <div class="disc"><button class="go high"></button></div>
+        <div class="disc"><button class="go half chromatic high"></button></div>
+        <div class="disc"><button class="go high"></button></div>
+        <div class="disc"><button class="go half chromatic high"></button></div>
+        <div class="disc"><button class="go high"></button></div>
+        <div class="disc"></div>
+        <div class="disc"><button class="go high"></button></div>
+        <div class="disc"><button class="go half chromatic high"></button></div>
+        <div class="disc"><button class="go high"></button></div>
+        <div class="disc"><button class="go half chromatic high"></button></div>
+        <div class="disc"><button class="go high"></button></div>
+        <div class="disc"><button class="go half chromatic high"></button></div>
+        <div class="disc"><button class="go high"></button></div>
+        <div class="disc"></div>
+      </div>
+      
+    <div id="keyWrapper">
+      <div id="tonalityBox">
+        <label for="major">Major<input type="radio" name="tonality" id="major" value=0 checked hidden></label>
+        <label for="minor">Minor<input type="radio" name="tonality" id="minor" value=1 hidden></label>
+      </div>
+      <div id="keySelectContainer">
+        <label class="keyOpt" for="key1"><span>C</span><input type="radio" name="key" id="key1" value="180" checked></label>
+        <label class="keyOpt" for="key2"><span>C#</span><span>Db</span><input type="radio" name="key" id="key2" value="154.2857"></label>
+        <label class="keyOpt" for="key3"><span>D</span><input type="radio" name="key" id="key3" value="128.5714"></label>
+        <label class="keyOpt" for="key4"><span>D#</span><span>Eb</span><input type="radio" name="key" id="key4" value="102.8571"></label>
+        <label class="keyOpt" for="key5"><span>E</span><input type="radio" name="key" id="key5" value="77.1428"></label>
+        <label class="keyOpt" for="key6"><span>F</span><input type="radio" name="key" id="key6" value="25.7142"></label>
+        <label class="keyOpt" for="key7"><span>F#</span><span>Gb</span><input type="radio" name="key" id="key7" value="0"></label>
+        <label class="keyOpt" for="key8"><span>G</span><input type="radio" name="key" id="key8" value="-25.7143"></label>
+        <label class="keyOpt" for="key9"><span>G#</span><span>Ab</span><input type="radio" name="key" id="key9" value="-51.4286"></label>
+        <label class="keyOpt" for="key10"><span>A</span><input type="radio" name="key" id="key10" value="-77.1429"></label>
+        <label class="keyOpt" for="key11"><span>A#</span><span>Bb</span><input type="radio" name="key" id="key11" value="-102.8572"></label>
+        <label class="keyOpt" for="key12"><span>B</span><input type="radio" name="key" id="key12" value="-128.5715"></label>
+            </div>
+    </div>
+  </body>
+</html>

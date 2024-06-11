@@ -1,0 +1,551 @@
+:root {
+    --grn: #637e77;
+    --drk: #526D65;
+    --brwn: #C69774;
+    --drkbrwn: #2f1c0e;
+    --pnk: #F8DFD4;
+    --barelypnk: #F8DFD4aa;
+    --crm: #FFEFE8;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    accent-color: var(--crm);
+    user-select: none;
+}
+
+#welcome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: grid;
+    place-content: center;
+    background-image: linear-gradient(#637e77ea, #526D65cc), url("./forest.jpg");
+    background-blend-mode: normal;
+    background-size: cover;
+    animation: fade 3s both;
+  }
+  #welcome h1 {
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px #00000055;
+    animation: fade 2s both;
+  }
+  #welcome img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    scale: 3;
+    filter: blur(2px);
+    animation: grow 2s both, fade 2s both;
+  }
+  
+  @keyframes grow {
+    0% {scale: 2}
+    50% {scale: 2}
+    100% {scale: 8}
+  }
+  @keyframes fade {
+    0% {opacity: 1}
+    50% {opacity: 1}
+    100% {opacity: 0}
+  }
+  
+
+h3 {
+    user-select: text;
+}
+html {
+    width: 100%;
+    min-height: 100%;
+}
+body {
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: linear-gradient(to bottom, #637e77ea, #526D65cc), url("./forest.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#root {
+    width: clamp(360px, 100vw, 800px);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    margin: auto;
+}
+#controls,
+#songControls {
+    width: 100%;
+    padding: 0.5rem 0.5rem 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    scale: 0.8;
+}
+#controls label,
+#songControls label {
+    display: grid;
+    text-align: center;
+    color: var(--crm);
+    gap: 0.2rem;
+    text-shadow: 0 0 8px #000000;
+}
+#loadKitBox {
+    position: absolute;
+    top: 0.25rem;
+    left: 50%;
+    translate: -50%;
+    display: flex;
+    gap: 0.25rem;
+}
+#loadKit {
+    padding: 0.25rem 0.4rem;
+    background-image: radial-gradient(circle at 30% 30%, var(--crm), var(--brwn));
+    border: none;
+    border-radius: 0.2rem;
+    box-shadow: 0 0 3px inset, 2px 2px 4px #00000055;
+    cursor: pointer;
+    color: var(--drkbrwn);
+    display: grid;
+    place-content: center;
+    height: 1.25rem;
+    font-size: 0.75rem;
+}
+#loadKitBox select {
+    background: var(--drkbrwn);
+    border: 1px solid var(--brwn);
+    color: var(--barelypnk)
+}
+#tempo,
+#meter,
+#division {
+    padding: 0.25rem 0.5rem;
+    background: #00000088;
+    border: none;
+    border-radius: 0.2rem;
+    color: var(--barelypnk);
+}
+label:has(#swing) {
+    display: grid;
+    place-content: center;
+    border: 1px solid var(--barelypnk);
+    padding: 0 0.5rem;
+    border-radius: 0.2rem;
+}
+label:has(#swing:checked) {
+    background: #00000088;
+    border-color: var(--brwn);
+}
+#playBtn {
+    font-size: 2.5rem;
+    background: transparent;
+    border: none;
+    color: var(--crm);
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    padding: 0.2rem;
+    aspect-ratio: 1;
+}
+#playBtn:has(.fa-circle-stop) {
+    box-shadow: 0 0 10px var(--pnk);
+    
+}
+#instrumentPanel {
+    position: relative;
+    background-color: #C69774;
+    background-image: linear-gradient(#c2926dd5, #b79c87da), url("./grain.jpg");
+    background-blend-mode: multiply;
+    background-size: 350%;
+    background-repeat: no-repeat;
+    border-radius: 2rem;
+    width: 95%;
+    padding: 2rem 1.5rem 1rem;
+    border-top: 4px solid var(--drkbrwn);
+    border-bottom: 4px solid var(--drkbrwn);
+    border-left: 1px solid var(--brwn);
+    border-right: 1px solid var(--brwn);
+    box-shadow: 0 0 15px #00000088;
+    display: flex;
+    justify-content: space-evenly;
+}
+.track {
+    flex: 1;
+    display: grid;
+    gap: 0.5rem;
+    justify-items: center;
+}
+.loadSound,
+.detune {
+    display: none;
+}
+.trackNumber {
+    color: var(--crm);
+    font-size: 1rem;
+    text-shadow: 0 0 5px black;
+}
+.trackTitle {
+    color: var(--barelypnk);
+    background: #00000088;
+    padding: 0.25rem;
+    border-radius: 0.2rem;
+    border: 1px solid var(--brwn);
+    height: 60px;
+    width: 85%;
+    font-size: 0.6rem;
+    overflow: hidden;
+    box-shadow: 0 0 10px black;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+.trackSettings {
+    display: grid;
+    gap: 0.3rem;
+}
+.steps {
+    width: 100%;
+    display: grid;
+    gap: 0.25rem;
+    place-items: center;
+    border-top: 2px solid var(--pnk);
+    padding-top: 0.5rem;
+}
+.stepInput {
+    display: none;
+}
+.step {
+    width: 3vh;
+    aspect-ratio: 1;
+    border: 1px solid var(--barelypnk);
+    border-radius: 0.2rem;
+    background: #00000055;
+    margin: auto;
+    box-shadow: 2px 2px 5px #00000088;
+    cursor: pointer;
+}
+.step:has(input:checked) {
+    background-image: radial-gradient(circle at 50%, #ffefe8f3, var(--grn));
+}
+.step.here {
+    outline-offset: 4px;
+    outline: 2px solid var(--brwn);
+}
+.gear,
+.mute,
+label:has(.loadSound),
+.recordButton {
+    padding: 0.25rem 0.4rem;
+    background-image: radial-gradient(circle at 30% 30%, var(--crm), var(--brwn));
+    border: none;
+    border-radius: 0.2rem;
+    box-shadow: 0 0 3px inset, 2px 2px 4px #00000055;
+    cursor: pointer;
+    color: var(--drkbrwn);
+    display: grid;
+    place-content: center;
+    height: 1.25rem;
+    font-size: 0.75rem;
+}
+.mute.muted {
+    background: var(--drkbrwn);
+    color: var(--brwn);
+}
+.gear:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* RECORDING DIALOG STYLING --------------------------------------------------- */
+
+#record,
+#keepRec,
+#discardRec {
+    background-color: var(--drk);
+    color: var(--crm);
+    border: none;
+    box-shadow: 2px 2px 5px #00000055;
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    margin: auto;
+}
+#record:disabled {
+    opacity: 0;
+}
+#recBox {
+    display: grid;
+    place-content: center;
+}
+#discardRec {
+    background: var(--drkbrwn);
+}
+#recBox audio::-webkit-media-controls-panel {
+    background: var(--brwn);
+    color: var(--crm);
+}
+#confirmBox {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+
+/* SETTINGS DIALOG STYLING ------------------------------------------------ */
+
+#settingsDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    min-height: 200px;
+    translate: -50% -50%;
+    background: var(--crm);
+    border: 8px solid var(--brwn);
+    border-radius: 0.5rem;
+    outline: 2px solid var(--grn);
+    color: var(--grn);
+    padding: 1rem;
+}
+#settingsDialog input {
+    accent-color: var(--drk);
+}
+#dialogInputs,
+#trackSettingsForm {
+    display: grid;
+    gap: 0.5rem;
+}
+label:has(#trackLevel),
+label:has(#trackPan),
+label:has(#trackDetune) {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 25% 60%;
+    gap: 0.5rem;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+label:has(#filterFreq) {
+    position: relative;
+}
+#filterOptions {
+    display: flex;
+    padding: 0.5rem 0;
+    gap: 0.5rem;
+}
+label:has(#filterFreq) {
+    display: grid;
+}
+#filterToggle {
+    margin-left: 1rem;
+}
+#trackPan {
+    width: 84%;
+    position: relative;
+    margin: auto;
+}
+#trackPan::before {
+    content: "L";
+    color: var(--grn);
+    position: absolute;
+    left: -15%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: large;
+}
+#trackPan::after {
+    content: "R";
+    position: absolute;
+    right: -15%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--grn);
+    font-size: large;
+}
+
+#closeDialog {
+    background: transparent;
+    color: var(--drkbrwn);
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 1.5rem;
+    border: none;
+}
+
+label:has(input[type='radio']) {
+    display: inline-block;
+    place-content: center;
+    border: 2px groove var(--grn);
+}
+label:has(input[type='radio']:checked) {
+    background-color: #C69774;
+}
+label:has(input[type='radio']:disabled) {
+    background-color: transparent;
+    opacity: 0.3;
+}
+label:has(:disabled) {
+    opacity: 0.3;
+}
+
+.touchDisplay {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    translate: -50%;
+    background: var(--drk);
+    color: var(--crm);
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    display: none;
+    text-align: center;
+}
+label[for='filterFreq'] .touchDisplay {
+    min-width: 80%;
+}
+.touchDisplay.isTouching {
+    display: block;
+}
+
+
+
+/* CUSTOM RANGE INPUT STYLING ------------------------------------------------- */
+
+  input[type=range] {
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #00000088, 0px 0px 1px #0d0d0d88;
+    background: var(--brwn);
+    border-radius: 1.3px;
+    border: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #00000088, 0px 0px 1px #0d0d0d88;
+    border: 1px solid var(--drkbrwn);
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background-color: #C69774;
+    background-image: linear-gradient(#c2926dd5, #b79c87da), url("./grain.jpg");
+    background-blend-mode: multiply;
+    background-size: 200%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -10px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: var(--brwn);
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #00000088, 0px 0px 1px #0d0d0d88;
+    background: var(--brwn);
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #00000088, 0px 0px 1px #0d0d0d88;
+    border: 1px solid var(--drkbrwn);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #C69774;
+    background-image: linear-gradient(#c2926dd5, #b79c87da), url("./grain.jpg");
+    background-blend-mode: multiply;
+    background-size: 200%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #00000088, 0px 0px 1px #0d0d0d88;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #00000088, 0px 0px 1px #0d0d0d88;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #00000088, 0px 0px 1px #0d0d0d88;
+    border: 1px solid var(--drkbrwn);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #C69774;
+    background-image: linear-gradient(#c2926dd5, #b79c87da), url("./grain.jpg");
+    background-blend-mode: multiply;
+    background-size: 200%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+  }
+
+  @media (orientation: landscape) {
+    #root {
+        width: clamp(600px, 100vw, 1200px);
+    }
+    .trackSettings {
+        align-items: center;
+    }
+    #instrumentPanel {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .track,
+    .trackSettings,
+    .steps {
+        display: flex;
+    }
+    .steps {
+        border-top: none;
+        padding-top: 0;
+    }
+    .step {
+        width: 5vh;
+    }
+    .trackTitle {
+        width: 120px;
+        height: 1.5rem;
+        overflow: hidden;
+        text-wrap: nowrap;
+    }
+  }
+
+  

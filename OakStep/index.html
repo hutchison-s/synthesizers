@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover'>
+    <title>OakStep</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel='stylesheet' href='style.css'>
+    <script src='script.js' defer></script>
+    <script src="https://kit.fontawesome.com/6a8f656999.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id='root'>
+        <div id="welcome">
+            <img src="./favicon.ico" alt="icon">
+            <h1>OakStep</h1>
+        </div>
+        <section id="controls">
+            <label for="tempo">Tempo<input type="number" name="tempo" id="tempo" min="20" max="220" value="100"></label>
+            <label for="volume">Volume<input type="range" name="volume" id="volume" min="0" max="1" value="0.7" step="0.01"></label>
+            <button id="playBtn"><i class="fa-regular fa-circle-play"></i></button>
+        </section>
+        <section id="instrumentPanel">
+            <button id="loadKit"><i class="fa-regular fa-folder-open"></i></button>
+        </section>
+        <section id="songControls">
+            <label for="swing">Swing<input type="checkbox" name="swing" id="swing" hidden></label>
+            <label for="meter">
+                Meter
+                <select name="meter" id="meter">
+                    <option value="fourfour">4/4</option>
+                    <option value="threefour">3/4</option>
+                    <option value="twofour">2/4</option>
+                    <option value="twelveeight">12/8</option>
+                    <option value="nineeight">9/8</option>
+                    <option value="sixeight">6/8</option>
+                </select>
+            </label>
+            <label for="division">
+                Division
+                <select name="division" id="division">
+                    <option value=4>&#9836;</option>
+                    <option value=2>&#9835;</option>
+                </select>
+            </label>
+        </section>
+        <dialog id="settingsDialog">
+            <button id="closeDialog"><i class="fa-solid fa-xmark"></i></button>
+            <div id="dialogInputs"></div>
+        </dialog>
+    </div>
+</body>
+</html>
